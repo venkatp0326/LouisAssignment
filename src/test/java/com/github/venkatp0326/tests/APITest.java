@@ -45,7 +45,7 @@ public class APITest {
 
 
     @Test
-    public void deleteTest() {
+    public void testDelete() {
         String targetEmployeeID = "1";
         Response resp = given().when().delete("http://dummy.restapiexample.com/public/api/v1/delete/"+targetEmployeeID);
 
