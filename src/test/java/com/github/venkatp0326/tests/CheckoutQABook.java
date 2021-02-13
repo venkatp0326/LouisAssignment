@@ -27,21 +27,8 @@ public class CheckoutQABook extends UITest {
 
     float priceFromResults;
 
-    @Test
-    public void main() {
-        System.out.println("Test");
-
-        searchAndOpenItem();
-        addToCart();
-        validatePreCart();
-        checkout();
-
-        System.out.println("End");
-
-    }
-
-    public void searchAndOpenItem()
-    {
+    @Test(description = "Open site and go to item page")
+    public void searchAndOpenItem() {
 
         driver.get("http://www.amazon.com");
 
@@ -54,43 +41,49 @@ public class CheckoutQABook extends UITest {
         //get top link in matching results
         WebElement result = driver.findElement(By.xpath(searchResultsXpathIdentifier + "//h2/a"));
 
-        //get price
+        //save price
         String priceWhole = driver.findElement(By.xpath(searchResultsXpathIdentifier + "//span[@class='a-price-whole']")).getText();
         String priceFraction = driver.findElement(By.xpath(searchResultsXpathIdentifier + "//span[@class='a-price-fraction']")).getText();
 
         priceFromResults = Float.parseFloat(priceWhole + "." + priceFraction);
         System.out.println("Price from results = " + priceFromResults);
 
-        //click result
+        //open item page
         result.click();
     }
 
+    @Test(priority = 1, description = "Add item to cart")
     public void addToCart() {
+
         //get price - dealing cases for new books
         String bookPagePriceStr = driver.findElement(By.xpath("//*[@id=\"newBuyBoxPrice\"]")).getText();
         float bookPagePrice = getPriceFromDollarString(bookPagePriceStr);
+
         System.out.println("price = " + bookPagePrice);
 
-        Assert.assertEquals(bookPagePrice, priceFromResults);
+        Assert.assertEquals(bookPagePrice, priceFromResults,"Item Price mismatch");
 
         //Add to cart
         driver.findElement(By.xpath("//*[@id=\"add-to-cart-button\"]")).click();
     }
 
+    @Test(priority = 2, description = "Validate pre cart")
     public void validatePreCart() {
+
         //check precart price
         String preCartPriceStr = driver.findElement(By.xpath("//*[@id=\"hlb-subcart\"]/div[1]/span/span[2]")).getText();
-
         float preCartPrice = getPriceFromDollarString(preCartPriceStr);
+
         System.out.println("PreCart Price = " + preCartPrice);
-        Assert.assertEquals(preCartPrice, priceFromResults);
+        Assert.assertEquals(preCartPrice, priceFromResults,"Item Price mismatch");
 
         //Proceed to checkout
         driver.findElement(By.xpath("//*[@id=\"hlb-ptc-btn-native\"]")).click();
     }
 
-    public void checkout()
-    {
+    @Test(priority = 3, description = "Checkout")
+    public void checkout() {
+
         System.out.println("Final Checkout is intentionally left Undone due to login handling that needs real credentials and SMS verification");
         /*
         //enter email
@@ -104,7 +97,9 @@ public class CheckoutQABook extends UITest {
     }
 
     private static float getPriceFromDollarString(String priceStr) {
+
         return Float.parseFloat(priceStr.replaceAll("[^\\d.]", ""));
+
     }
 
 }

@@ -28,7 +28,7 @@ public class APITest {
 
         //Validate response code
         System.out.println("Response code = " + resp.getStatusCode());
-        Assert.assertEquals(resp.getStatusCode(),200);
+        Assert.assertEquals(resp.getStatusCode(),200, "Invalid response code");
         System.out.println("Response String: "+ resp.asString());
 
         //deserialize data
@@ -51,7 +51,7 @@ public class APITest {
 
         //Validate response code
         System.out.println("Response code = " + resp.getStatusCode());
-        Assert.assertEquals(resp.getStatusCode(),200);
+        Assert.assertEquals(resp.getStatusCode(),200,"Invalid response code");
 
         //Get response as string
         String responseStr = resp.asString();
