@@ -92,7 +92,7 @@ public class CheckoutQABook extends UITest {
 
 
         //enter password
-        driver.findElement(By.xpath("//*[@id=\"ap_email\"]")).sendKeys("password");
+        driver.findElement(By.xpath("//*[@id=\"ap_password\"]")).sendKeys("password");
         driver.findElement(By.xpath("//*[@id='signInSubmit']")).click();*/
     }
 
