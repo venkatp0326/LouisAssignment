@@ -28,7 +28,7 @@ public class CheckoutQABook extends UITest {
     float priceFromResults;
 
     @Test
-    public void main() throws InterruptedException {
+    public void main() {
         System.out.println("Test");
 
         searchAndOpenItem();
@@ -65,7 +65,7 @@ public class CheckoutQABook extends UITest {
         result.click();
     }
 
-    public void addToCart() throws InterruptedException {
+    public void addToCart() {
         //get price - dealing cases for new books
         String bookPagePriceStr = driver.findElement(By.xpath("//*[@id=\"newBuyBoxPrice\"]")).getText();
         float bookPagePrice = getPriceFromDollarString(bookPagePriceStr);
@@ -77,7 +77,7 @@ public class CheckoutQABook extends UITest {
         driver.findElement(By.xpath("//*[@id=\"add-to-cart-button\"]")).click();
     }
 
-    public void validatePreCart() throws InterruptedException {
+    public void validatePreCart() {
         //check precart price
         String preCartPriceStr = driver.findElement(By.xpath("//*[@id=\"hlb-subcart\"]/div[1]/span/span[2]")).getText();
 
