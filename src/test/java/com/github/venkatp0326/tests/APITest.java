@@ -1,14 +1,11 @@
 package com.github.venkatp0326.tests;
 
-
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
 
 import static io.restassured.RestAssured.given;
 
