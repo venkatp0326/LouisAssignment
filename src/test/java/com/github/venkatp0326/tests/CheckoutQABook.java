@@ -52,7 +52,7 @@ public class CheckoutQABook extends UITest {
         result.click();
     }
 
-    @Test(priority = 1, description = "Add item to cart")
+    @Test(dependsOnMethods = { "searchAndOpenItem" }, description = "Add item to cart")
     public void addToCart() {
 
         //get price - dealing cases for new books
@@ -67,7 +67,7 @@ public class CheckoutQABook extends UITest {
         driver.findElement(By.xpath("//*[@id=\"add-to-cart-button\"]")).click();
     }
 
-    @Test(priority = 2, description = "Validate pre cart")
+    @Test(dependsOnMethods = { "addToCart" }, description = "Validate pre cart")
     public void validatePreCart() {
 
         //check precart price
@@ -81,7 +81,7 @@ public class CheckoutQABook extends UITest {
         driver.findElement(By.xpath("//*[@id=\"hlb-ptc-btn-native\"]")).click();
     }
 
-    @Test(priority = 3, description = "Checkout")
+    @Test(dependsOnMethods = { "validatePreCart" }, description = "Checkout")
     public void checkout() {
 
         System.out.println("Final Checkout is intentionally left Undone due to login handling that needs real credentials and SMS verification");
