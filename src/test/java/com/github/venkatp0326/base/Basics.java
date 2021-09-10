@@ -10,7 +10,7 @@ public class Basics {
           System.out.println("name contains s");
 
       }
-      name.substring(10);
+      name.substring(16);
       int a=1460;
       int b=100;
       int sum=a+b;
